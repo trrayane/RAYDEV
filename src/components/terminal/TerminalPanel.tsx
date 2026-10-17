@@ -55,12 +55,12 @@ function EmptyState() {
           <RaydevIcon size={38} animated={false} className="opacity-80" />
           <div className="space-y-1">
             <p className="text-xs font-semibold text-fg">Terminal Standby</p>
-            <p className="text-[11px] text-muted max-w-xs">Connect to your Linux visual computing environment</p>
+            <p className="text-[11px] text-muted max-w-xs">Connect to your WSL 2 Linux environment</p>
           </div>
           <Button
             variant="primary"
             size="md"
-            className="shadow-[0_2px_12px_rgba(214,48,58,0.35)]"
+            className="shadow-[0_2px_12px_rgba(34,197,94,0.35)]"
             onClick={() => void openTerminal()}
           >
             Launch Terminal Session

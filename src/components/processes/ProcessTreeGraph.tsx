@@ -31,10 +31,10 @@ const STATE_CONFIG: Record<
 > = {
   RUNNING: {
     label: "Running",
-    badge: "text-[#EA3843] bg-[#D6303A]/15 border-[#D6303A]/40",
-    border: "border-[#D6303A]/70",
-    glow: "shadow-[0_0_12px_rgba(214,48,58,0.25)]",
-    dot: "bg-[#D6303A] animate-ping",
+    badge: "text-[#4ADE80] bg-[#22C55E]/15 border-[#22C55E]/40",
+    border: "border-[#22C55E]/70",
+    glow: "shadow-[0_0_12px_rgba(34,197,94,0.25)]",
+    dot: "bg-[#22C55E] animate-ping",
   },
   SLEEPING: {
     label: "Sleeping",
@@ -163,7 +163,7 @@ export function ProcessTreeGraph({
                 key={idx}
                 d={pathD}
                 fill="none"
-                stroke={isTerm ? "#262E27" : "#D6303A"}
+                stroke={isTerm ? "#262E27" : "#22C55E"}
                 strokeWidth={1.5}
                 strokeDasharray={isTerm ? "3 3" : undefined}
                 strokeOpacity={isTerm ? 0.3 : 0.7}

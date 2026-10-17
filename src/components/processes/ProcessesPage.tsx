@@ -120,7 +120,7 @@ export function ProcessesPage() {
             className={cn(
               "flex items-center gap-1.5 rounded px-3 py-1 text-xs font-semibold transition-all",
               tab === "simulator"
-                ? "bg-[#D6303A] text-white shadow-sm"
+                ? "bg-[#22C55E] text-white shadow-sm"
                 : "text-muted hover:text-fg",
             )}
           >
@@ -132,7 +132,7 @@ export function ProcessesPage() {
             className={cn(
               "flex items-center gap-1.5 rounded px-3 py-1 text-xs font-semibold transition-all",
               tab === "metrics"
-                ? "bg-[#D6303A] text-white shadow-sm"
+                ? "bg-[#22C55E] text-white shadow-sm"
                 : "text-muted hover:text-fg",
             )}
           >

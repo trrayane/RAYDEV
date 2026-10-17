@@ -276,24 +276,22 @@ export function SettingsPage() {
       {/* â”€â”€ About RAYDEV â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <section className="rounded-md border border-line bg-surface p-6 flex flex-col items-center text-center space-y-3">
         <div className="flex items-baseline font-sans text-xl font-medium tracking-tight">
-          <span className="text-white">r</span>
-          <span className="text-[#D6303A] font-extrabold text-2xl">AI</span>
-          <span className="text-[#D6E7F3] font-semibold text-2xl">my</span>
-          <span className="ml-2 text-white font-normal text-2xl">Solutions</span>
+          <span className="text-white text-2xl">RAY</span>
+          <span className="ml-1 text-[#22C55E] font-extrabold text-2xl">DEV</span>
         </div>
         <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-[#D6E7F3]">
           Native WSL 2 Dev Environment
         </p>
         <p className="max-w-md text-xs text-muted">
-          Unified desktop workspace connecting Windows to high-performance WSL 2 Linux subsystems,
-          streamlined for computer vision, AI development, and intelligent hardware engineering.
+          Unified desktop workspace connecting Windows to WSL 2 Linux subsystems — terminal,
+          project explorer, environment diagnostics and process simulation in one place.
         </p>
         <div className="flex items-center gap-2 pt-2 text-[11px] text-muted">
           <span>Version 0.1.0</span>
           <span>â€¢</span>
           <span>Tauri + React + WSL 2</span>
           <span>â€¢</span>
-          <span className="text-[#D6303A] font-medium">Production Build</span>
+          <span className="text-[#22C55E] font-medium">Production Build</span>
         </div>
       </section>
     </div>

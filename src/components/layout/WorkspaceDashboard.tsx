@@ -56,7 +56,7 @@ export function WorkspaceDashboard() {
           {/* Subtle background ambient red glow */}
           <div
             aria-hidden
-            className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-[#D6303A]/10 blur-3xl"
+            className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-[#22C55E]/10 blur-3xl"
           />
           <div
             aria-hidden
@@ -67,8 +67,8 @@ export function WorkspaceDashboard() {
             <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-3">
               <RaydevLogo size="lg" layout="horizontal" withTagline={true} animated={true} />
               <p className="max-w-xl text-xs md:text-[13px] text-[#D6E7F3]/80 leading-relaxed pt-1">
-                High-performance developer workspace engineered for AI acceleration, computer vision pipelines,
-                embedded intelligent hardware, and native WSL 2 Linux subsystems.
+                Premium Windows 11 developer workspace with a native WSL 2 terminal, project explorer
+                and environment diagnostics.
               </p>
               <div className="flex flex-wrap items-center gap-2 pt-2">
                 <Badge tone="good">
@@ -82,7 +82,7 @@ export function WorkspaceDashboard() {
                     Distro: <span className="text-[#D6E7F3] font-medium ml-1">{activeDistroName}</span>
                   </Badge>
                 )}
-                <Badge tone="neutral">CUDA &amp; Vision Ready</Badge>
+                <Badge tone="neutral">ConPTY + WSL 2</Badge>
                 <Badge tone="neutral">RAYDEV OS v0.1.0</Badge>
               </div>
             </div>
@@ -92,7 +92,7 @@ export function WorkspaceDashboard() {
               <Button
                 variant="primary"
                 size="md"
-                className="h-9 px-4 font-semibold shadow-[0_4px_16px_rgba(214,48,58,0.4)]"
+                className="h-9 px-4 font-semibold shadow-[0_4px_16px_rgba(34,197,94,0.4)]"
                 onClick={() => {
                   if (!panelVisible) setPanelVisible(true);
                   void openTerminal();
@@ -103,10 +103,10 @@ export function WorkspaceDashboard() {
               <Button
                 variant="secondary"
                 size="md"
-                className="h-9 px-4 border-[#D6303A]/60 bg-[#D6303A]/10 text-white hover:bg-[#D6303A]/25 hover:border-[#D6303A] shadow-[0_2px_12px_rgba(214,48,58,0.2)] font-semibold"
+                className="h-9 px-4 border-[#22C55E]/60 bg-[#22C55E]/10 text-white hover:bg-[#22C55E]/25 hover:border-[#22C55E] shadow-[0_2px_12px_rgba(34,197,94,0.2)] font-semibold"
                 onClick={() => setView("processes")}
               >
-                <GitFork size={16} className="text-[#EA3843]" /> Simulateur de Processus
+                <GitFork size={16} className="text-[#4ADE80]" /> Simulateur de Processus
               </Button>
               <Button
                 variant="secondary"
@@ -132,7 +132,7 @@ export function WorkspaceDashboard() {
         {project && (
           <section className="flex items-center justify-between rounded-lg border border-line bg-surface/90 px-4 py-3">
             <div className="flex items-center gap-3 min-w-0">
-              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-[#D6303A]/15 text-[#D6303A]">
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-[#22C55E]/15 text-[#22C55E]">
                 <FolderOpen size={16} />
               </div>
               <div className="min-w-0">
@@ -164,14 +164,14 @@ export function WorkspaceDashboard() {
           </section>
         )}
 
-        {/* â”€â”€ Intelligent Hardware & Visual Computing Telemetry â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+        {/* ── Host & Subsystem Telemetry ──────────────────────────── */}
         <section className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {/* Tile 1: Intelligent Hardware & Host Compute */}
+          {/* Tile 1: Host Compute */}
           <div className="rounded-lg border border-line bg-surface p-4 flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between pb-3 border-b border-line">
                 <span className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#D6E7F3]">
-                  <Cpu size={14} className="text-[#D6303A]" /> Intelligent Host
+                  <Cpu size={14} className="text-[#22C55E]" /> Host Compute
                 </span>
                 <span className="text-[10px] text-muted">Host Hardware</span>
               </div>
@@ -185,7 +185,7 @@ export function WorkspaceDashboard() {
                   </div>
                   <div className="h-1.5 w-full rounded-full bg-elevated overflow-hidden">
                     <div
-                      className="h-full bg-gradient-to-r from-[#D6303A] to-[#EA3843] transition-all duration-500"
+                      className="h-full bg-gradient-to-r from-[#22C55E] to-[#4ADE80] transition-all duration-500"
                       style={{ width: `${Math.min(100, Math.max(5, host?.appCpuPercent ?? 5))}%` }}
                     />
                   </div>
@@ -218,7 +218,7 @@ export function WorkspaceDashboard() {
                 onClick={() => setView("processes")}
                 className="text-[11px] text-[#D6E7F3] hover:underline flex items-center gap-1"
               >
-                <GitFork size={12} className="text-[#EA3843]" /> Simulateur de Processus &rarr;
+                <GitFork size={12} className="text-[#4ADE80]" /> Simulateur de Processus &rarr;
               </button>
             </div>
           </div>
@@ -228,7 +228,7 @@ export function WorkspaceDashboard() {
             <div>
               <div className="flex items-center justify-between pb-3 border-b border-line">
                 <span className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#D6E7F3]">
-                  <Server size={14} className="text-[#D6303A]" /> Linux Subsystem
+                  <Server size={14} className="text-[#22C55E]" /> Linux Subsystem
                 </span>
                 <span className="text-[10px] text-muted">WSL 2 Engine</span>
               </div>
@@ -280,19 +280,19 @@ export function WorkspaceDashboard() {
             </div>
           </div>
 
-          {/* Tile 3: Visual Computing & Session Orchestrator */}
+          {/* Tile 3: Sessions & Orchestrator */}
           <div className="rounded-lg border border-line bg-surface p-4 flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between pb-3 border-b border-line">
                 <span className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#D6E7F3]">
-                  <Layers size={14} className="text-[#D6303A]" /> Visual Computing
+                  <Layers size={14} className="text-[#22C55E]" /> Sessions
                 </span>
                 <span className="text-[10px] text-muted">Sessions</span>
               </div>
               <div className="mt-3 space-y-2">
                 <div className="flex justify-between text-xs">
                   <span className="text-muted">Active Terminals</span>
-                  <span className="font-mono font-semibold text-[#D6303A]">
+                  <span className="font-mono font-semibold text-[#22C55E]">
                     {terminalTabs.length} {terminalTabs.length === 1 ? "session" : "sessions"}
                   </span>
                 </div>
@@ -305,16 +305,16 @@ export function WorkspaceDashboard() {
                 </div>
 
                 <div className="flex justify-between text-xs">
-                  <span className="text-muted">Vision Stack</span>
+                  <span className="text-muted">Toolchain</span>
                   <span className="text-[#4ADE80] font-medium text-[11px]">
-                    OpenCV â€¢ PyTorch Ready
+                    Python &bull; Git Ready
                   </span>
                 </div>
 
                 <div className="flex justify-between text-xs">
-                  <span className="text-muted">Accelerators</span>
+                  <span className="text-muted">Interop</span>
                   <span className="text-[#D6E7F3] font-medium text-[11px]">
-                    Hardware Direct I/O
+                    Windows &harr; WSL Filesystems
                   </span>
                 </div>
               </div>
@@ -324,9 +324,9 @@ export function WorkspaceDashboard() {
               <button
                 type="button"
                 onClick={() => void openTerminal()}
-                className="text-[11px] text-[#D6303A] hover:underline flex items-center gap-1 font-medium"
+                className="text-[11px] text-[#22C55E] hover:underline flex items-center gap-1 font-medium"
               >
-                <Play size={12} /> New Vision Terminal &rarr;
+                <Play size={12} /> New Terminal &rarr;
               </button>
             </div>
           </div>
@@ -420,7 +420,7 @@ export function WorkspaceDashboard() {
               <button
                 type="button"
                 onClick={() => setView("settings")}
-                className="text-[#D6303A] hover:underline font-medium"
+                className="text-[#22C55E] hover:underline font-medium"
               >
                 All shortcuts &rarr;
               </button>

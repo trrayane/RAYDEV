@@ -862,8 +862,8 @@ export function ProcessSimulator() {
 
       {/* Drag & Drop Visual Overlay */}
       {isDragging && (
-        <div className="absolute inset-0 z-50 flex flex-col items-center justify-center rounded-xl border-2 border-dashed border-[#EA3843] bg-[#0C0E0B]/90 backdrop-blur-sm pointer-events-none">
-          <Upload size={38} className="text-[#EA3843] animate-bounce mb-2" />
+        <div className="absolute inset-0 z-50 flex flex-col items-center justify-center rounded-xl border-2 border-dashed border-[#4ADE80] bg-[#0C0E0B]/90 backdrop-blur-sm pointer-events-none">
+          <Upload size={38} className="text-[#4ADE80] animate-bounce mb-2" />
           <p className="text-sm font-semibold text-fg">Déposez votre fichier .c ici</p>
           <p className="text-xs text-muted">Le simulateur analysera le code et affichera son déroulement</p>
         </div>
@@ -874,7 +874,7 @@ export function ProcessSimulator() {
         {/* Left: Title + File Picker + Scenario pills */}
         <div className="flex flex-wrap items-center gap-2.5">
           <div className="flex items-center gap-1.5 text-xs font-semibold text-fg">
-            <GitFork size={15} className="text-[#D6303A]" />
+            <GitFork size={15} className="text-[#22C55E]" />
             <span>Simulateur</span>
           </div>
 
@@ -883,7 +883,7 @@ export function ProcessSimulator() {
             variant="primary"
             size="sm"
             onClick={() => fileInputRef.current?.click()}
-            className="bg-[#D6303A] hover:bg-[#EA3843] text-white shadow-sm font-medium text-xs px-2.5 py-1"
+            className="bg-[#22C55E] hover:bg-[#4ADE80] text-white shadow-sm font-medium text-xs px-2.5 py-1"
             title="Choisir un fichier .c sur votre disque"
           >
             <FileUp size={13} className="mr-1.5" /> Choisir fichier .c
@@ -915,7 +915,7 @@ export function ProcessSimulator() {
                   className={cn(
                     "group flex items-center gap-1 rounded px-2 py-0.5 text-xs font-medium transition-colors cursor-pointer",
                     isSelected
-                      ? "bg-[#D6303A] text-white shadow-sm"
+                      ? "bg-[#22C55E] text-white shadow-sm"
                       : "text-muted hover:text-fg hover:bg-elevated/40",
                   )}
                   onClick={() => handleSelectScenario(s.id)}
@@ -1007,7 +1007,7 @@ export function ProcessSimulator() {
 
       {/* ── Current Step Explanation ───────────────────────────────────── */}
       <div className="flex items-center gap-2 text-xs text-[#D6E7F3] bg-surface/60 border border-line/40 rounded-md px-3 py-1.5">
-        <span className="font-semibold text-[#D6303A] shrink-0">
+        <span className="font-semibold text-[#22C55E] shrink-0">
           Étape {currentStepIdx + 1} :
         </span>
         <span className="truncate flex-1 text-fg">{currentStep.explanation}</span>
@@ -1022,7 +1022,7 @@ export function ProcessSimulator() {
         <div className="lg:col-span-7 flex flex-col rounded-lg border border-line bg-surface overflow-hidden min-h-[340px]">
           <div className="flex items-center justify-between border-b border-line bg-elevated/40 px-3 py-2 text-xs font-medium text-muted">
             <span className="flex items-center gap-1.5 text-fg">
-              <GitFork size={13} className="text-[#D6303A]" /> Arbre des Processus (PID Tree)
+              <GitFork size={13} className="text-[#22C55E]" /> Arbre des Processus (PID Tree)
             </span>
             <div className="flex items-center gap-2 text-[10px] text-muted">
               {scenario.isCustom && (
@@ -1050,7 +1050,7 @@ export function ProcessSimulator() {
           <div className="flex flex-col rounded-lg border border-line bg-surface overflow-hidden">
             <div className="flex items-center justify-between border-b border-line bg-elevated/40 px-3 py-1.5 text-xs text-muted">
               <span className="flex items-center gap-1.5 text-fg font-medium truncate">
-                <Code2 size={13} className="text-[#D6303A] shrink-0" />
+                <Code2 size={13} className="text-[#22C55E] shrink-0" />
                 <span className="truncate">{scenario.fileName ?? scenario.title}</span>
               </span>
               <div className="flex items-center gap-1">
@@ -1093,7 +1093,7 @@ export function ProcessSimulator() {
                     key={idx}
                     className={cn(
                       "flex items-center gap-2 px-1.5 py-px rounded",
-                      isCurrent && "bg-[#D6303A]/20 border-l-2 border-[#D6303A] text-white font-semibold",
+                      isCurrent && "bg-[#22C55E]/20 border-l-2 border-[#22C55E] text-white font-semibold",
                     )}
                   >
                     <span className="w-5 select-none text-right text-[9px] text-muted/50">
@@ -1110,7 +1110,7 @@ export function ProcessSimulator() {
           <div className="flex flex-col rounded-lg border border-line bg-surface overflow-hidden flex-1">
             <div className="flex items-center justify-between border-b border-line bg-elevated/40 px-3 py-1.5 text-xs text-muted">
               <span className="flex items-center gap-1 text-fg font-medium">
-                <TerminalSquare size={13} className="text-[#D6303A]" /> Sortie (stdout)
+                <TerminalSquare size={13} className="text-[#22C55E]" /> Sortie (stdout)
               </span>
               <span className="text-[10px] text-muted font-mono">{stdoutLines.length}</span>
             </div>
@@ -1121,7 +1121,7 @@ export function ProcessSimulator() {
               ) : (
                 stdoutLines.map((line, i) => (
                   <div key={i} className="flex items-center gap-1.5">
-                    <span className="text-[#D6303A] text-[10px]">&gt;</span>
+                    <span className="text-[#22C55E] text-[10px]">&gt;</span>
                     <span className="text-white font-medium">{line}</span>
                   </div>
                 ))
@@ -1149,7 +1149,7 @@ export function ProcessSimulator() {
                   loadCustomCode(editorCode, "code_personnalise.c");
                   setIsEditorOpen(false);
                 }}
-                className="bg-[#D6303A] hover:bg-[#EA3843] text-white shadow-sm"
+                className="bg-[#22C55E] hover:bg-[#4ADE80] text-white shadow-sm"
               >
                 <Sparkles size={13} className="mr-1.5" /> Lancer la Simulation
               </Button>
@@ -1159,11 +1159,11 @@ export function ProcessSimulator() {
           <div className="space-y-3">
             <p className="text-xs text-muted">
               Collez votre propre code C ou modifiez-le. Le moteur analysera vos appels à{" "}
-              <code className="text-[#EA3843]">fork()</code>,{" "}
-              <code className="text-[#EA3843]">wait()</code>,{" "}
-              <code className="text-[#EA3843]">sleep()</code>,{" "}
-              <code className="text-[#EA3843]">exit()</code> et{" "}
-              <code className="text-[#EA3843]">printf()</code> pour simuler son déroulement complet.
+              <code className="text-[#4ADE80]">fork()</code>,{" "}
+              <code className="text-[#4ADE80]">wait()</code>,{" "}
+              <code className="text-[#4ADE80]">sleep()</code>,{" "}
+              <code className="text-[#4ADE80]">exit()</code> et{" "}
+              <code className="text-[#4ADE80]">printf()</code> pour simuler son déroulement complet.
             </p>
 
             {/* Quick Templates */}

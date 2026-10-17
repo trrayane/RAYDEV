@@ -48,10 +48,10 @@ const ACK_DELAY_MS = 30;
 const INPUT_CHUNK = 256 * 1024;
 
 const SEARCH_DECORATIONS: ISearchOptions["decorations"] = {
-  matchBackground: "rgba(214, 48, 58, 0.35)",
-  matchBorder: "#D6303A",
-  matchOverviewRuler: "#D6303A",
-  activeMatchBackground: "#D6303A",
+  matchBackground: "rgba(34, 197, 94, 0.35)",
+  matchBorder: "#22C55E",
+  matchOverviewRuler: "#22C55E",
+  activeMatchBackground: "#22C55E",
   activeMatchBorder: "#D6E7F3",
   activeMatchColorOverviewRuler: "#D6E7F3",
 };

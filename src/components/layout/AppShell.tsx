@@ -84,7 +84,7 @@ function ActivityBar() {
           }}
           className={cn(
             "h-10 w-10 relative transition-all",
-            activeView === view && "text-[#D6303A] bg-active shadow-[inset_2px_0_0_#D6303A]",
+            activeView === view && "text-[#22C55E] bg-active shadow-[inset_2px_0_0_#22C55E]",
           )}
         />
       ))}
@@ -94,7 +94,7 @@ function ActivityBar() {
         icon={<TerminalSquare size={20} />}
         active={panelVisible}
         onClick={togglePanel}
-        className={cn("h-10 w-10", panelVisible && "text-[#D6303A]")}
+        className={cn("h-10 w-10", panelVisible && "text-[#22C55E]")}
       />
       <div className="flex-1" />
       <IconButton
@@ -104,7 +104,7 @@ function ActivityBar() {
         onClick={() => setView("settings")}
         className={cn(
           "h-10 w-10",
-          activeView === "settings" && "text-[#D6303A] bg-active shadow-[inset_2px_0_0_#D6303A]",
+          activeView === "settings" && "text-[#22C55E] bg-active shadow-[inset_2px_0_0_#22C55E]",
         )}
       />
     </nav>

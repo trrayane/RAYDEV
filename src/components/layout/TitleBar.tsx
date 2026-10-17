@@ -206,7 +206,7 @@ export function TitleBar() {
             type="button"
             onClick={handleClose}
             aria-label="Close"
-            className="flex h-7 w-8 items-center justify-center text-muted hover:bg-[#D6303A] hover:text-white transition-colors"
+            className="flex h-7 w-8 items-center justify-center text-muted hover:bg-[#22C55E] hover:text-white transition-colors"
           >
             <X size={13} />
           </button>

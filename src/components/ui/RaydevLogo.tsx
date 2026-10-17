@@ -8,9 +8,9 @@ export interface RaydevIconProps extends SVGProps<SVGSVGElement> {
 
 /**
  * High-fidelity vector SVG of the official RAYDEV emblem:
- * - 3D isometric crimson-red angled A-chevron
- * - Dark burgundy dimensional depth extrusion
- * - Concentric crimson bullseye / target
+ * - 3D isometric green angled A-chevron
+ * - Dark forest dimensional depth extrusion
+ * - Concentric green bullseye / target
  */
 export function RaydevIcon({ size = 32, animated = false, className, ...props }: RaydevIconProps) {
   return (
@@ -25,18 +25,18 @@ export function RaydevIcon({ size = 32, animated = false, className, ...props }:
       {...props}
     >
       <defs>
-        {/* Front face primary crimson gradient */}
-        <linearGradient id="raydev-crimson-grad" x1="45" y1="35" x2="160" y2="165" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stopColor="#EA3843" />
-          <stop offset="45%" stopColor="#D6303A" />
-          <stop offset="100%" stopColor="#BA1F28" />
+        {/* Front face primary green gradient */}
+        <linearGradient id="raydev-green-grad" x1="45" y1="35" x2="160" y2="165" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stopColor="#4ADE80" />
+          <stop offset="45%" stopColor="#22C55E" />
+          <stop offset="100%" stopColor="#16A34A" />
         </linearGradient>
 
-        {/* 3D depth extrusion gradient (dark burgundy/crimson shadow) */}
+        {/* 3D depth extrusion gradient (dark forest shadow) */}
         <linearGradient id="raydev-depth-grad" x1="40" y1="40" x2="150" y2="170" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stopColor="#6E0F16" />
-          <stop offset="60%" stopColor="#4A090E" />
-          <stop offset="100%" stopColor="#35060A" />
+          <stop offset="0%" stopColor="#14532D" />
+          <stop offset="60%" stopColor="#0B3D1E" />
+          <stop offset="100%" stopColor="#083014" />
         </linearGradient>
 
         {/* Top gloss highlight */}
@@ -46,9 +46,9 @@ export function RaydevIcon({ size = 32, animated = false, className, ...props }:
           <stop offset="100%" stopColor="#FFFFFF" stopOpacity="0" />
         </linearGradient>
 
-        {/* Subtle ambient red glow filter */}
+        {/* Subtle ambient green glow filter */}
         <filter id="raydev-glow" x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow dx="0" dy="6" stdDeviation="10" floodColor="#D6303A" floodOpacity="0.38" />
+          <feDropShadow dx="0" dy="6" stdDeviation="10" floodColor="#22C55E" floodOpacity="0.38" />
         </filter>
       </defs>
 
@@ -82,11 +82,11 @@ export function RaydevIcon({ size = 32, animated = false, className, ...props }:
         {/* Seamless fill polygon between feet and shadow */}
         <polygon
           points="46,144 39,153 64,153 71,144"
-          fill="#4A090E"
+          fill="#0B3D1E"
         />
         <polygon
           points="136,152 130,161 155,161 161,152"
-          fill="#3E080C"
+          fill="#0A3418"
         />
 
         {/* â”€â”€ FRONT FACE LAYER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
@@ -97,7 +97,7 @@ export function RaydevIcon({ size = 32, animated = false, className, ...props }:
           width="28"
           height="116"
           rx="14"
-          fill="url(#raydev-crimson-grad)"
+          fill="url(#raydev-green-grad)"
           transform="rotate(-26 48 42)"
         />
 
@@ -108,7 +108,7 @@ export function RaydevIcon({ size = 32, animated = false, className, ...props }:
           width="28"
           height="124"
           rx="14"
-          fill="url(#raydev-crimson-grad)"
+          fill="url(#raydev-green-grad)"
           transform="rotate(27 96 44)"
         />
 
@@ -133,7 +133,7 @@ export function RaydevIcon({ size = 32, animated = false, className, ...props }:
             cx="98"
             cy="137"
             r="16"
-            stroke="#D6303A"
+            stroke="#22C55E"
             strokeWidth="5.5"
             fill="none"
           />
@@ -142,7 +142,7 @@ export function RaydevIcon({ size = 32, animated = false, className, ...props }:
             cx="98"
             cy="137"
             r="6"
-            fill="#D6303A"
+            fill="#22C55E"
           />
         </g>
       </g>
@@ -183,10 +183,8 @@ export function RaydevLogo({
       <div className={cn("flex flex-col items-center text-center select-none", className)}>
         <RaydevIcon size={iconSize} animated={animated} className="mb-3" />
         <div className="flex items-baseline font-sans leading-none tracking-tight">
-          <span className="text-white font-medium text-xl md:text-2xl">r</span>
-          <span className="text-[#D6303A] font-extrabold text-xl md:text-2xl">AI</span>
-          <span className="text-[#D6E7F3] font-semibold text-xl md:text-2xl">my</span>
-          <span className="ml-2 text-white font-light text-xl md:text-2xl">Solutions</span>
+          <span className="text-white font-medium text-xl md:text-2xl">RAY</span>
+          <span className="text-[#22C55E] font-extrabold text-xl md:text-2xl">DEV</span>
         </div>
         {withTagline && (
           <p className="mt-2 text-[9px] md:text-[10px] uppercase font-semibold tracking-[0.24em] text-[#D6E7F3]/80">
@@ -203,10 +201,8 @@ export function RaydevLogo({
       <RaydevIcon size={iconSize} animated={animated} />
       <div className="flex flex-col justify-center leading-none">
         <div className="flex items-baseline font-sans text-[15px] font-medium tracking-tight">
-          <span className="text-white">r</span>
-          <span className="text-[#D6303A] font-extrabold">AI</span>
-          <span className="text-[#D6E7F3] font-semibold">my</span>
-          <span className="ml-1.5 text-white font-normal">Solutions</span>
+          <span className="text-white">RAY</span>
+          <span className="ml-1 text-[#22C55E] font-extrabold">DEV</span>
         </div>
         {withTagline && (
           <span className="mt-1 text-[8px] font-semibold uppercase tracking-[0.2em] text-[#D6E7F3]/75">
