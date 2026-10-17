@@ -1,70 +1,124 @@
 import { create } from "zustand";
-import type { FsEntry, Toast, ViewId } from "../types";
 
-interface UiState {
-  activeView: ViewId;
-  sidebarVisible: boolean;
-  sidebarWidth: number;
-  projectRoot: string | null;
-  tree: Record<string, FsEntry[]>;
-  expanded: Set<string>;
-  selectedPath: string | null;
-  toasts: Toast[];
-  paletteOpen: boolean;
-  searchOpen: boolean;
+export type ToastKind = "info" | "success" | "error";
 
-  setActiveView: (v: ViewId) => void;
-  toggleSidebar: () => void;
-  setSidebarWidth: (w: number) => void;
-  setProjectRoot: (root: string | null) => void;
-  setTreeChildren: (parent: string, entries: FsEntry[]) => void;
-  toggleExpand: (path: string) => void;
-  setSelectedPath: (p: string | null) => void;
-  clearTree: () => void;
-  pushToast: (t: Omit<Toast, "id">) => void;
-  dismissToast: (id: string) => void;
-  setPaletteOpen: (v: boolean) => void;
-  setSearchOpen: (v: boolean) => void;
+export interface Toast {
+  id: number;
+  kind: ToastKind;
+  message: string;
 }
 
-export const useUi = create<UiState>((set) => ({
-  activeView: "terminal",
-  sidebarVisible: true,
-  sidebarWidth: 260,
-  projectRoot: null,
-  tree: {},
-  expanded: new Set<string>(),
-  selectedPath: null,
-  toasts: [],
-  paletteOpen: false,
-  searchOpen: false,
+export interface ConfirmRequest {
+  id: number;
+  title: string;
+  message: string;
+  /** Optional monospace detail (a path, a command, a preview). */
+  detail?: string;
+  confirmLabel: string;
+  cancelLabel: string;
+  danger: boolean;
+  resolve: (ok: boolean) => void;
+}
 
-  setActiveView: (v) =>
-    set((st) => ({ activeView: v, sidebarVisible: st.sidebarVisible || true })),
-  toggleSidebar: () => set((st) => ({ sidebarVisible: !st.sidebarVisible })),
-  setSidebarWidth: (w) => set({ sidebarWidth: Math.max(180, Math.min(500, w)) }),
-  setProjectRoot: (root) =>
-    set({ projectRoot: root, tree: {}, expanded: new Set(root ? [root] : []) }),
-  setTreeChildren: (parent, entries) =>
-    set((st) => ({ tree: { ...st.tree, [parent]: entries } })),
-  toggleExpand: (path) =>
-    set((st) => {
-      const next = new Set(st.expanded);
-      if (next.has(path)) next.delete(path);
-      else next.add(path);
-      return { expanded: next };
-    }),
-  setSelectedPath: (p) => set({ selectedPath: p }),
-  clearTree: () => set({ tree: {}, expanded: new Set(), selectedPath: null }),
-  pushToast: (t) => {
-    const id = crypto.randomUUID();
-    set((st) => ({ toasts: [...st.toasts, { ...t, id }] }));
-    setTimeout(() => {
-      set((st) => ({ toasts: st.toasts.filter((x) => x.id !== id) }));
-    }, 4500);
-  },
-  dismissToast: (id) =>
-    set((st) => ({ toasts: st.toasts.filter((x) => x.id !== id) })),
-  setPaletteOpen: (v) => set({ paletteOpen: v }),
-  setSearchOpen: (v) => set({ searchOpen: v }),
+export interface PromptRequest {
+  id: number;
+  title: string;
+  label: string;
+  initial: string;
+  confirmLabel: string;
+  validate?: (value: string) => string | null;
+  resolve: (value: string | null) => void;
+}
+
+interface UiState {
+  toasts: Toast[];
+  confirm: ConfirmRequest | null;
+  prompt: PromptRequest | null;
+  paletteOpen: boolean;
+  newProjectOpen: boolean;
+  openProjectOpen: boolean;
+  setPaletteOpen: (open: boolean) => void;
+  setNewProjectOpen: (open: boolean) => void;
+  setOpenProjectOpen: (open: boolean) => void;
+  dismissToast: (id: number) => void;
+}
+
+let nextId = 1;
+
+export const useUi = create<UiState>((set) => ({
+  toasts: [],
+  confirm: null,
+  prompt: null,
+  paletteOpen: false,
+  newProjectOpen: false,
+  openProjectOpen: false,
+  setPaletteOpen: (paletteOpen) => set({ paletteOpen }),
+  setNewProjectOpen: (newProjectOpen) => set({ newProjectOpen }),
+  setOpenProjectOpen: (openProjectOpen) => set({ openProjectOpen }),
+  dismissToast: (id) => set((s) => ({ toasts: s.toasts.filter((t) => t.id !== id) })),
 }));
+
+export function toast(kind: ToastKind, message: string, ms = kind === "error" ? 7000 : 3500): void {
+  const id = nextId++;
+  useUi.setState((s) => ({ toasts: [...s.toasts.slice(-3), { id, kind, message }] }));
+  setTimeout(() => useUi.getState().dismissToast(id), ms);
+}
+
+export interface ConfirmOptions {
+  title: string;
+  message: string;
+  detail?: string;
+  confirmLabel?: string;
+  cancelLabel?: string;
+  danger?: boolean;
+}
+
+/** Shows a modal confirmation. Resolves `false` for cancel, Escape or a newer dialog replacing it. */
+export function confirmDialog(opts: ConfirmOptions): Promise<boolean> {
+  return new Promise<boolean>((resolve) => {
+    useUi.getState().confirm?.resolve(false);
+    useUi.setState({
+      confirm: {
+        id: nextId++,
+        title: opts.title,
+        message: opts.message,
+        detail: opts.detail,
+        confirmLabel: opts.confirmLabel ?? "Confirm",
+        cancelLabel: opts.cancelLabel ?? "Cancel",
+        danger: opts.danger ?? false,
+        resolve: (ok) => {
+          useUi.setState({ confirm: null });
+          resolve(ok);
+        },
+      },
+    });
+  });
+}
+
+export interface PromptOptions {
+  title: string;
+  label: string;
+  initial?: string;
+  confirmLabel?: string;
+  validate?: (value: string) => string | null;
+}
+
+export function promptDialog(opts: PromptOptions): Promise<string | null> {
+  return new Promise<string | null>((resolve) => {
+    useUi.getState().prompt?.resolve(null);
+    useUi.setState({
+      prompt: {
+        id: nextId++,
+        title: opts.title,
+        label: opts.label,
+        initial: opts.initial ?? "",
+        confirmLabel: opts.confirmLabel ?? "OK",
+        validate: opts.validate,
+        resolve: (value) => {
+          useUi.setState({ prompt: null });
+          resolve(value);
+        },
+      },
+    });
+  });
+}
